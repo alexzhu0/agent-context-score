@@ -1,0 +1,25 @@
+name: agent-context-score
+one_liner: Score agent instruction context for clarity, verification quality, contradictions, and abuse-prone phrasing.
+target_user: AI builders, agent operators, repository maintainers
+pain_point: instruction files drift over time and become contradictory, vague, or dangerous.
+demo_command: PYTHONPATH=src python3 -m agent_context_score examples/bad --format markdown
+topics:
+  - ai-instructions
+  - safety
+  - agent-context
+  - lint
+  - local-tools
+release_channel:
+  - github
+  - relevant-developer-communities
+launch_copy:
+  - I built agent-context-score: Score AGENTS.md, CLAUDE.md, .cursorrules, and copilot/cursor rule files for local AI safety checks.
+  - The pain: unclear, stale, or dangerous instructions can silently drift into agent workflows.
+  - Try it with: PYTHONPATH=src python3 -m agent_context_score . --format markdown --fail-under 85
+quality_gate:
+  commands:
+    - python3 -m unittest discover -s tests
+metrics_goal:
+  day_1_stars: 5
+  day_3_stars: 15
+  day_7_stars: 50
