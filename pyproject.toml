@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=58"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "agent-context-score"
-version = "0.1.0"
+version = "0.1.1"
 description = "Score AI context instruction files for clarity, safety, and anti-abuse risk."
 readme = "README.md"
 requires-python = ">=3.9"

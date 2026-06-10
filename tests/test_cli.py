@@ -36,6 +36,17 @@ class AgentContextScoreTests(unittest.TestCase):
         self.assertIn(".github/copilot-instructions.md", relative)
         self.assertIn(".cursor/rules/guide.md", relative)
 
+    def test_discover_cursor_rules_ignores_non_markdown_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.create_file(root, ".cursor/rules/guide.md", "# Rule\nRun checks.\n")
+            self.create_file(root, ".cursor/rules/cache.bin", "\x00binary")
+
+            files = discover_instruction_files(root)
+            relative = sorted(path.relative_to(root).as_posix() for path in files)
+
+        self.assertEqual(relative, [".cursor/rules/guide.md"])
+
     def test_score_no_issues_for_clear_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
